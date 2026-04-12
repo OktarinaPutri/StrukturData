@@ -1,0 +1,277 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "sFS6udzajK6S",
+        "outputId": "8e51df4c-8f20-4f6a-c7c8-00e251e25032"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Data sebelum di sorting: [64, 34, 25, 12, 22, 11, 90]\n",
+            "Data setelah bubble sort: [11, 12, 22, 25, 34, 64, 90]\n"
+          ]
+        }
+      ],
+      "source": [
+        "def bubble_sort(arr):\n",
+        "  n = len(arr)\n",
+        "  for i in range (n-1):\n",
+        "    for j in range (n-i-1):\n",
+        "      if arr[j]> arr [j+1]:\n",
+        "        arr[j], arr[j+1] = arr [j+1], arr[j]\n",
+        "  return arr\n",
+        "\n",
+        "data = [64,34,25,12,22,11,90]\n",
+        "sorted_data = bubble_sort(data.copy())\n",
+        "print('Data sebelum di sorting:', data)\n",
+        "print('Data setelah bubble sort:', sorted_data)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def selection_sort(arr):\n",
+        "  n = len(arr)\n",
+        "  for i in range(n-1):\n",
+        "    min_index = i\n",
+        "    for j in range (i+1, n):\n",
+        "      if arr[j] < arr [min_index]:\n",
+        "        min_index = j\n",
+        "    arr[i], arr[min_index] = arr[min_index], arr[i]\n",
+        "  return arr\n",
+        "\n",
+        "data = [64,25,12,22,11]\n",
+        "sorted_data = selection_sort(data.copy())\n",
+        "print('Data sebelum di sorting:', data)\n",
+        "print('Data setelah selection sort:',sorted_data)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ytGShQmYlGL4",
+        "outputId": "3279dee0-2d7f-4a00-a703-73f84d97f58a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Data sebelum di sorting: [64, 25, 12, 22, 11]\n",
+            "Data setelah selection sort: [11, 12, 22, 25, 64]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def insertion_sort(arr):\n",
+        "  n = len(arr)\n",
+        "  for i in range(1, n):\n",
+        "    key = arr[i]\n",
+        "    j = i - 1\n",
+        "    while j >= 0 and arr[j] > key:\n",
+        "      arr[j + 1] = arr[j]\n",
+        "      j -= 1\n",
+        "    arr[j + 1] = key\n",
+        "  return arr\n",
+        "# Contoh penggunaan\n",
+        "data = [64, 34, 25, 12, 22, 11, 90]\n",
+        "sorted_data = insertion_sort(data.copy())\n",
+        "print(\"Data sebelum sorting:\", data)\n",
+        "print(\"Data setelah Insertion Sort:\", sorted_data)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "19RXw94bmR7g",
+        "outputId": "090e4a89-7798-4b13-8d04-297e369dbbc7"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Data sebelum sorting: [64, 34, 25, 12, 22, 11, 90]\n",
+            "Data setelah Insertion Sort: [11, 12, 22, 25, 34, 64, 90]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def merge_sort(arr):\n",
+        "  if len(arr) >1:\n",
+        "    mid = len(arr) // 2\n",
+        "    left_half = arr[:mid]\n",
+        "    right_half = arr[mid:]\n",
+        "\n",
+        "    merge_sort(left_half)\n",
+        "    merge_sort(right_half)\n",
+        "\n",
+        "    i = j = k = 0\n",
+        "\n",
+        "    while i < len(left_half) and j < len(right_half):\n",
+        "      if left_half[i]<right_half[j]:\n",
+        "        arr[k] = left_half[i]\n",
+        "        i +=1\n",
+        "      else:\n",
+        "        arr[k] = right_half[j]\n",
+        "        j += 1\n",
+        "      k += 1\n",
+        "    while i < len(left_half):\n",
+        "      arr[k] = left_half[i]\n",
+        "      i += 1\n",
+        "      k += 1\n",
+        "    while j< len(right_half):\n",
+        "      arr[k] = right_half[j]\n",
+        "      j += 1\n",
+        "      k += 1\n",
+        "  return arr\n",
+        "\n",
+        "data = [64,25,12,22,11]\n",
+        "sorted_data = merge_sort(data.copy())\n",
+        "print('Data sebelum sorting:', data)\n",
+        "print('Data setelah merge sort:', sorted_data)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eSCWypNKmeZ_",
+        "outputId": "72b70260-4202-49ad-eb4a-39bafe195f9c"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Data sebelum sorting: [64, 25, 12, 22, 11]\n",
+            "Data setelah merge sort: [11, 12, 22, 25, 64]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def quick_sort(arr):\n",
+        "  if len(arr) <= 1:\n",
+        "    return arr\n",
+        "  pivot = arr[len(arr)//2]\n",
+        "  left = [x for x in arr if x <pivot]\n",
+        "  middle = [x for x in arr if x == pivot]\n",
+        "  right = [x for x in arr if x >pivot]\n",
+        "  return quick_sort(left) + middle + quick_sort(right)\n",
+        "\n",
+        "data = [64,25,12,22,11]\n",
+        "sorted_data = quick_sort(data.copy())\n",
+        "print('Data sebelum sorting:',data)\n",
+        "print('Data setelah quick sort:', sorted_data)"
+      ],
+      "metadata": {
+        "id": "OZz9AnNXo56_",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "a912bc02-9a17-4965-c70f-d0ac9ccc70a3"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Data sebelum sorting: [64, 25, 12, 22, 11]\n",
+            "Data setelah quick sort: [11, 12, 22, 25, 64]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "95Y8Ska4ugnt"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print('-----------------------------DATA PELANGGAN------------------------------')\n",
+        "print('\\n')\n",
+        "def quick_sort(arr):\n",
+        "  if len(arr) <= 1:\n",
+        "    return arr\n",
+        "  pivot = arr[len(arr)//2]\n",
+        "  left = [x for x in arr if x <pivot]\n",
+        "  middle = [x for x in arr if x == pivot]\n",
+        "  right = [x for x in arr if x >pivot]\n",
+        "  return quick_sort(left) + middle + quick_sort(right)\n",
+        "\n",
+        "data = [250.65,665.55,10.85,8.0,92.5]\n",
+        "sorted_data = quick_sort(data.copy())\n",
+        "print('Data total belanja sebelum sorting:',data)\n",
+        "print('Data total belanja setelah quick sort:', sorted_data)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Dbi3V64ntQz0",
+        "outputId": "9a2e4831-88ca-467f-b57d-13a54efb5771"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "-----------------------------DATA PELANGGAN------------------------------\n",
+            "\n",
+            "\n",
+            "Data total belanja sebelum sorting: [250.65, 665.55, 10.85, 8.0, 92.5]\n",
+            "Data total belanja setelah quick sort: [8.0, 10.85, 92.5, 250.65, 665.55]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "QqnPTCswXiBs"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
